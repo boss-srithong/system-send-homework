@@ -1,0 +1,63 @@
+<app-topmenu></app-topmenu>
+<ngx-spinner></ngx-spinner>
+<div class="container" style="margin-top : 15px ">
+
+  <div class="list-group">
+    <li class="list-group-item list-group-item-action flex-column align-items-start bg-info">
+      <div class="d-flex w-100 justify-content-between" style="color:white">
+        <h5 class="mb-1">ชื่อวิชา : {{couseName}} </h5>
+        <small>รหัสวิชา : {{cid}} </small>
+      </div>
+
+      <p style="color:white">{{couseDetail}}</p>
+    </li>
+
+    <button class="btn btn-warning" (click)="addHM()"> เพิ่มการบ้าน</button>
+    <li class="list-group-item list-group-item-action flex-column align-items-start">
+      <form *ngIf="showAddHM">
+        <div class="form-group">
+          <label for="exampleInputEmail1">หัวข้อการบ้าน</label>
+          <input #tgggg type="text" class="form-control" aria-describedby="emailHelp" placeholder="หัวข้อการบ้าน">
+          <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1"><b>ส่งก่อน:</b> {{myDate}}</label>
+          <dl-date-time-picker startView="day" maxView="year" minView="minute" minuteStep="5" #data__ (change)="updateDate(data__.value)">
+          </dl-date-time-picker>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">รายละเอียด</label>
+          <textarea #detail class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+      
+        <button type="submit" class="btn btn-primary" (click)="SaveData(tgggg.value,data__.value,detail.value)">บันทึก</button>
+
+      </form>
+    </li>
+
+
+  </div>
+
+
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">ลำดับ</th>
+        <th scope="col">การบ้าน</th>
+     
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of listHomework;let id = index">
+          <!-- <span *ngIf="data=='list'">{{id+1}}</span> -->
+        <th *ngIf="data!=='list'" scope="row">{{id+1}}</th>
+        <td *ngIf="data!=='list'"><a href="/lists/{{cid}}/{{data}}">{{data}}</a> </td>
+      
+        <td *ngIf="data!=='list'"><button class="btn btn-danger" (click)="deletCC(data)">ลบ</button></td>
+
+      </tr>
+
+    </tbody>
+  </table>
+</div>

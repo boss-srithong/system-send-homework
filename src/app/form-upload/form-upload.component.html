@@ -1,0 +1,35 @@
+<h4>อัปโหลดการบ้าน (.pdf)</h4>
+
+<div *ngIf="currentFileUpload" class="progress">
+  <div class="progress-bar progress-bar-info progress-bar-striped"
+    role="progressbar"
+    attr.aria-valuenow="{{progress.percentage}}"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    [ngStyle]="{ width: progress.percentage + '%' }"
+  >
+    {{ progress.percentage }}%
+  </div>
+</div>
+
+  <p *ngIf="alert==true">
+      <ngb-alert [dismissible]="false">
+        <strong>หมดเวลาส่งการบ้าน!</strong> ไม่สามารถอัปโหลดการบ้านได้
+      </ngb-alert>
+    </p>
+    
+    <p *ngIf="alert2==true">
+      <ngb-alert [dismissible]="false">
+        <strong>ยังไม่มีการบ้าน {{myh}}!</strong>
+      </ngb-alert>
+    </p>
+
+  <div class="input-group mb-3">
+      <div class="custom-file">
+        <input #myInput class="custom-file-input" id="inputGroupFile02" type="file" [disabled]="canUp" (change)="onFileChange($event.target.files[0])" style="visibility:hidden;"/>
+        <label class="custom-file-label" for="inputGroupFile02">{{chooseFile}}</label>
+      </div>
+      <div class="input-group-append">
+          <button *ngIf="btn_upload" (click)="upfile(fileResult, fileName)" class="btn btn-success input-group-text" id=""> upload </button>
+      </div>
+    </div>

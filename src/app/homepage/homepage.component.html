@@ -1,0 +1,110 @@
+<app-topmenu></app-topmenu>
+<ngx-spinner></ngx-spinner>
+
+<div class="container">
+    <p style="margin-top: 8px">
+        <button class="btn btn-lg btn-outline-primary" (click)="open(content)">เพิ่มรายวิชา</button>
+    </p>
+    <hr>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ลำดับ</th>
+                <th scope="col">รหัสวิชา</th>
+                <th scope="col">จัดการ</th>
+                <th scope="col">นำเข้ารายชื่อ (.xlsx)</th>
+                <th scope=""></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of checkFileList;let in = index">
+                <th scope="row">{{in+1}}</th>
+
+                <td *ngIf="data[1].list"><a href="/mycourse/{{data[0]}}" >{{data[0]}}</a></td>
+                <td *ngIf="data[1].list === undefined">{{data[0]}}</td>
+
+
+                <td><button class="btn btn-danger" (click)="deletCC(data[0])">ลบวิชา</button></td>
+
+                <td> 
+                        <div>
+                                <input type="file" (change)="onFileChange($event,in)" multiple="false" #myInput id="a{{in}}">
+                                 <span id="btn{{in}}" (click)="upload(data[0],files,file_name)"></span>  
+                        </div>
+                <td>
+                   
+                 <span *ngFor="let item of data">
+                        <button *ngIf="item.list" class="btn btn-outline-primary" (click)="open2(content2,data[0])">ดูไฟล์</button>
+                 </span>
+                   
+                </td>
+
+            </tr>
+
+        </tbody>
+    
+
+    </table>
+
+    <ng-template #content let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">เพิ่มรายวิชา</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">รหัสวิชา</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="" #cie>
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">ชื่อวิชา</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="" #cname>
+                    <small id="emailHelp" class="form-text text-muted">ภาษาไทยหรือภาษาอังกฤษก็ได้</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">รายละเอียดวิชา</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" #detail></textarea>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer" *ngIf="cie.value && cname.value && detail.value">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close({id:cie.value,name:cname.value,detail:detail.value})">Save</button>
+        </div>
+    </ng-template>
+
+    <ng-template #content2 let-modal>
+            <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title">{{cardid}}</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+    <div class="container"  align="center">
+    <table class="table table-striped table-bordered"  #myTable style="width:600px;">
+
+            <thead >
+                      <th scope="col">ลำดับ</th>
+                      <th scope="col">รหัส</th>
+                      <th scope="col">ชื่อ-สกุล</th>        
+            </thead>
+            <tbody >
+            <tr *ngFor='let item of showName;'>
+                   <td *ngIf="item.no!='ลำดับ' && item.id!='รหัสประจำตัว' && item.flname!='ชื่อ-สกุล'" >{{item.no}}</td>
+                   <td *ngIf="item.no!='ลำดับ' && item.id!='รหัสประจำตัว' && item.flname!='ชื่อ-สกุล'" >{{item.id}}</td>
+                   <td *ngIf="item.no!='ลำดับ' && item.id!='รหัสประจำตัว' && item.flname!='ชื่อ-สกุล'" >{{item.flname}}</td>
+            </tr>
+           </tbody>
+        
+     </table>
+    </div>
+    </ng-template>
+
+
+</div>

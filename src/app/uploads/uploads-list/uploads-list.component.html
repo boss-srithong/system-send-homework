@@ -1,0 +1,24 @@
+<h3>รายการไฟล์ของ :{{cardid}}</h3>
+
+<table class="table">
+          <tr *ngFor='let item of showData; let i = index;' class="container"> 
+                    <td> {{item.filename}} &nbsp;&nbsp;&nbsp;&nbsp;<button class='btn btn-outline-primary' (click)="open(content,item.data)">ดูไฟล์</button>
+                        <button (click)="delFileHW(i)" class="btn btn-danger btn-xs" style="float:right;">delete</button>
+                 </td>  
+          </tr>
+   
+  </table>
+
+<ng-template #content  let-c="close" let-d="dismiss">
+    <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">{{cardid}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body modal-lg">
+            <pdf-viewer [src]="pdfSrc" [original-size]="false" [render-text]="true" [zoom]="1" [show-all]="true" style="display:flex;"></pdf-viewer>
+    </div>
+
+</ng-template>

@@ -1,0 +1,30 @@
+<app-nav2></app-nav2>
+<div class="row">
+  <div class="col-sm">
+
+  </div>
+  <div class="col-sm">
+    <div style="text-align:center">
+      <br />
+      <h1>
+          <img width="200" alt="Angular Logo" src="assets/images/notes.svg">
+        Register
+      </h1>
+
+    </div>
+    <form>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" #email aria-describedby="emailHelp" placeholder="Enter email">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" #pass placeholder="Password">
+      </div>
+
+      <button type="submit" class="btn btn-primary" (click)="signup(email.value,pass.value)">Signup</button>
+    </form>
+  </div>
+  <div class="col-sm">
+  </div>
+</div>

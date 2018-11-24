@@ -1,0 +1,10 @@
+
+<button class="btn btn-lg btn-outline-success" (click)="exportTable()">Export การบ้านทั้งหมด</button>
+
+<br>
+
+    <table [hidden]='true' id="exportTableALL">
+        <tr *ngFor="let table of tableAll">
+                <td *ngFor="let td of table"> {{td}} </td>
+        </tr>
+    </table>

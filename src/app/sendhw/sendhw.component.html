@@ -1,0 +1,26 @@
+<app-nav2></app-nav2>
+
+<ngx-spinner></ngx-spinner>
+<div class="container" style="text-align:center "  >
+  
+  <h1>ส่งการบ้าน</h1>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">รหัสวิชา</th>
+        <th>ชื่อวิชา</th>
+        <th>รายละเอียด</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of hm">
+        <td scope="row"><a href="/send/{{data.uid}}/{{data.value}}">{{data.value}}</a></td>
+        <td>{{data.name}}</td>
+        <td>{{data.detail}}</td>
+      </tr>
+
+    </tbody>
+  </table>
+
+
+</div>

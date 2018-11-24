@@ -1,0 +1,32 @@
+<app-nav2></app-nav2>
+<div class="row">
+  <div class="col-sm">
+
+  </div>
+  <div class="col-sm">
+    <div style="text-align:center">
+      <h1>
+        Login
+      </h1>
+      <img width="300" alt="Angular Logo" src="assets/images/homework.svg">
+    </div>
+    <form>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input #em class="form-control" type="email" name="email" ngModel email placeholder="Enter email">
+
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" #pass class="form-control" placeholder="Password">
+      </div>
+      <div class="form-group">
+        <a href="/signup">สมัครสมาชิก</a>
+      </div>
+      <button type="button" class="btn btn-info btn-lg btn-block" (click)='Signin(em.value,pass.value)'>Login</button>
+
+    </form>
+  </div>
+  <div class="col-sm">
+  </div>
+</div>
